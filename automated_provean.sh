@@ -1,36 +1,25 @@
 #!/bin/bash
 script_dir=`dirname $0`
+#default reference is hg38
 ref=hg38
-
-# mkdir  ${input_file}_dir
-# mkdir  ${input_file}_dir/output
-# mkdir  ${input_file}_dir/tmp
-
-# output_dir=${input_file}_dir/output/
-# tmp_dir=${input_file}_dir/tmp/
 
 #change after build
 snp_path=/root/snpEff
 tool_path=/root/provean-1.1.5/bin/provean.sh
 python_path=/root/anaconda3/bin/python3
 tmp_dir=/root/tmp/
-#tmp_dir=/home/tmp/
 
-
-while getopts ":i:f:g:" OPT ; do
+while getopts ":i:r:f:g:" OPT ; do
     case $OPT in
         i) input_file=$OPTARG 
             mkdir  ${input_file}_dir
             mkdir  ${input_file}_dir/output
-            #mkdir  ${input_file}_dir/tmp
             output_dir=${input_file}_dir/output/ ;;
-            #tmp_dir=${input_file}_dir/tmp/ ;;
+        r) ref=$OPTARG #only hg19 and hg38 is allowed
         f) fasta_path=$OPTARG ;;
         g) gtf_path=$OPTARG 
             if [ -e ${fasta_path} ]; then
                 if [ -e ${gtf_path} ]; then
-                    # echo ${fasta_path}
-                    # echo ${gtf_path}
                     cp -r ${snp_path} ${input_file}_dir
                     snp_path=${input_file}_dir/snpEff
                     cp ${fasta_path} ${snp_path}/data/genomes/tmp.fa
@@ -39,10 +28,10 @@ while getopts ":i:f:g:" OPT ; do
                     java -jar ${snp_path}/snpEff.jar build -gtf22 -v tmp
                     ref=tmp
                 else
-                    echo "No such gtf file. fasta is required to create snpEff DB other then hg38."
+                    echo "No such gtf file."
                 fi
             else
-                echo "No such fasta file. fasta is required to create snpEff DB other then hg38."
+                echo "No such fasta file."
             fi ;;
     esac
 done
