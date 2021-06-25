@@ -34,9 +34,9 @@ while getopts ":i:f:g:" OPT ; do
                     cp -r ${snp_path} ${input_file}_dir
                     snp_path=${input_file}_dir/snpEff
                     cp ${fasta_path} ${snp_path}/data/genomes/tmp.fa
-                    cp ${gtf_path} ${snp_path}/data/tmp/genes.gff
+                    cp ${gtf_path} ${snp_path}/data/tmp/genes.gtf
                     echo "tmp.genome : tmp" >> ${snp_path}/snpEff.config
-                    java -jar ${snp_path}/snpEff.jar build -gff3 -v tmp
+                    java -jar ${snp_path}/snpEff.jar build -gtf22 -v tmp
                     ref=tmp
                 else
                     echo "No such gtf file. fasta is required to create snpEff DB other then hg38."
@@ -52,5 +52,5 @@ echo $ref
 if [ -e ${input_file} ]; then
     ${python_path} ${script_dir}/main.py ${script_dir} ${input_file} ${output_dir} ${snp_path}/snpEff.jar ${ref} ${tool_path} ${tmp_dir}
 else
-    echo "No such input directory"
+    echo "No such input file"
 fi
