@@ -3,11 +3,11 @@ import xlrd
 import openpyxl as px
 import re
 class ExcelProcess:
-    def __init__(self,inputFilePath,output_dir,basename):
+    def __init__(self,inputFilePath,output_dir,prefix):
         #引数読み込み
         self.inputFilePath = inputFilePath
         self.output_dir = output_dir
-        self.basename = basename
+        self.prefix = prefix
         #読み込み用にExcelファイルを読み込み
         f = xlrd.open_workbook(self.inputFilePath)
         self.sheet = f.sheets()
@@ -48,5 +48,5 @@ class ExcelProcess:
     def writeExcel(self,result,colIndex):
         self.pxSheet.cell(column = self.proveanPredIndex + 1, row = colIndex + 1, value = result['resultPred'])
         self.pxSheet.cell(column = self.proveanScoreIndex + 1, row = colIndex + 1, value = result['resultValue'])
-        self.book.save(self.output_dir + '/output_provean_' + self.basename)
+        self.book.save(self.output_dir + '/output_provean_' + self.prefix + ".xlsx")
 
