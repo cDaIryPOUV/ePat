@@ -15,7 +15,7 @@ while getopts ":i:r:f:g:" OPT ; do
             mkdir  ${input_file}_dir
             mkdir  ${input_file}_dir/output
             output_dir=${input_file}_dir/output/ ;;
-        r) ref=$OPTARG #only hg19 and hg38 is allowed
+        r) ref=$OPTARG ;; #only hg19 and hg38 is allowed
         f) fasta_path=$OPTARG ;;
         g) gtf_path=$OPTARG 
             if [ -e ${fasta_path} ]; then
