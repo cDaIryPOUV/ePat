@@ -31,7 +31,7 @@ print(prefix)
 import excel_converter
 if "vcf" in etx:
     #snpEffでvcfファイルをアノテーション。tmp_path/tmp.vcfに出力。
-    subprocess.check_output(["bash",  script_dir + "/snp_annotate.sh", input_file_path, snp_path, ref, prefix])
+    subprocess.check_output(["bash",  script_dir + "/snp_annotate.sh", input_file_path, snp_path, ref, tmp_path])
     input_file_path = tmp_path + "/tmp.vcf"
     #Excelに変換
     excel_converter.excel_convert(input_file_path,tmp_path)
