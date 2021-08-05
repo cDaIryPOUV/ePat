@@ -4,7 +4,7 @@ import openpyxl as px
 import subprocess
 import os
 
-def excel_convert(vcf_path,tmp_dir):
+def excel_convert(vcf_path,tmp_dir,prefix):
     excel_path = tmp_dir + "/" + prefix +".xlsx"
 
     #新しいExcelシートを作成
