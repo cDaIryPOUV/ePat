@@ -5,7 +5,7 @@ import subprocess
 import os
 
 def excel_convert(vcf_path,tmp_dir):
-    excel_path = tmp_dir + "/tmp.xlsx"
+    excel_path = tmp_dir + "/" + prefix +".xlsx"
 
     #新しいExcelシートを作成
     book=px.Workbook()
@@ -23,11 +23,8 @@ def excel_convert(vcf_path,tmp_dir):
         cells = line.split()
         #7行目までをcellに書き込む(INFO行の端が削られるが問題ない)
         #HIGHとMODERATEの変異だけを抽出
-        print(line)
-        print(cells)
-        print(len(cells))
         if "INFO" in cells[7] or "HIGH" in cells[7] or "MODERATE" in cells[7]:
-            for j in range(len(line)):
+            for j in range(len(cells)):
                 sheet1.cell(row=i+1, column=j+1, value=cells[j])
             i+=1
     book.save(excel_path)
