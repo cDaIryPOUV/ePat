@@ -4,7 +4,7 @@ import sys
 
 def vcf_converter(output_dir,prefix):
     input_excel_path = output_dir + '/output_provean_' + prefix + ".xlsx"
-    output_vcf_path = output_dir + '/output_provean_' + prefix + ".vcf"
+    output_vcf_path = output_dir + '/output_provean_' + prefix + ".txt"
 
     # input_excel_path = prefix
     # output_vcf_path = output_dir +  "test.vcf"
