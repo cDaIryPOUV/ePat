@@ -42,7 +42,7 @@ import excel_process
 excel_process_class = excel_process.ExcelProcess(input_file_path,output_dir,prefix)
 infoList = excel_process_class.colAquire('INFO','col')
 colLen = excel_process_class.colLenAquire()
-proveanPredCol = excel_process_class.colAquire('PROVEAN_pred','col')
+proveanPredCol = excel_process_class.proveanPredCol
 
 
 #compute

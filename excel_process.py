@@ -18,7 +18,7 @@ class ExcelProcess:
         self.book = px.load_workbook(self.inputFilePath)
         self.pxSheet = self.book.worksheets[0]
         #proveanスコア,Predの行を所得
-        self.proveanPredIndex = self.colAquire('PROVEAN_pred','index')
+        self.proveanPredIndex, self.proveanPredCol = self.colAquire('PROVEAN_pred','both')
         self.proveanScoreIndex = self.colAquire('PROVEAN_score','index')
     def colAquire(self,target,out):
         #Headerにtargetがある場合はそのindexを所得、ない場合はHeaderの最後の列にtargetの行を追加
