@@ -23,6 +23,9 @@ def excel_convert(vcf_path,tmp_dir):
         cells = line.split()
         #7行目までをcellに書き込む(INFO行の端が削られるが問題ない)
         #HIGHとMODERATEの変異だけを抽出
+        print(line)
+        print(cells)
+        print(len(line))
         if "INFO" in cells[7] or "HIGH" in cells[7] or "MODERATE" in cells[7]:
             for j in range(len(line)):
                 sheet1.cell(row=i+1, column=j+1, value=cells[j])
