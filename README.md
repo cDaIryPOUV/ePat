@@ -25,9 +25,8 @@ Usage
 ③(YOUR_WORKDIR)に移動
 ④以下のコマンドを実行する。
 singularity run  -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (YOUR_WORKDIR) (PATH_TO_ePat.sif)/ePat.sif /root/script/automated_provean.sh -i (YOUR_InputFile) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
-
-・結果の出力先
-・結果の見方
+⑤解析は終了したのち、(YOUR_WORKDIR)/output/output_provean_(YOUR_InputFilePrefix).txtがアウトプットファイルとして出力される。
+⑥'PROVEAN_score'列にその変異がタンパク質機能に与える影響が記載され、'PROVEAN_pred'列にその変異が有害か否かが記載される。
 ・結果のスクリーンショット
 
 Detail
@@ -45,12 +44,14 @@ ePatで定義した有害度スコアは以下の方法で算出する。
 
 ①スプライスジャンクション付近の変異
 変異が生じているスプライスジャンクション以降から停止コドンまでの範囲で、ePatで定義した有害度スコアを算出する。
+sequence_featureとしてアノテーションされている変異(SnpEffのバグで有害度がHIGHとアノテーションされてしまうため)と、スプライスジャンクション付近の変異のうち停止コドンよりも後ろのイントロンで起こっている変異は有害度スコアを算出しない。
 
 ②フレームシフト
 フレームシフトが開始しているアミノ酸から停止コドンまでの範囲で、ePatで定義した有害度スコアを算出する。
 
 ③Stop Gain
 停止コドンに置換されるアミノ酸から元の停止コドンまでの範囲で、ePatで定義した有害度スコアを算出する。
+Stop Lostに関しては、有害度スコアを算出しない。
 
 ④Start Lost
 本来の開始コドンから次に現れるメチオニンまでの範囲で、ePatで定義した有害度スコアを算出する。
@@ -61,11 +62,3 @@ PROVEANによって有害度スコアを算出
 これらのスコアを'PROVEAN_score'列に付与し、このスコアが-2.5以下の場合はD(Damaged)、-2.5よりも大きい場合はN(Neutral)を'PROVEAN_pred'列に付与する。
 
 出力は'output_provean_{元のvcfファイルのprefix}.txt'で出力され、outputディレクトリに保存される。
-
-
-
-
-
-
-
-また⑥Pseudo Gene、⑦スプライスジャンクション付近の変異のうちsequence_featureとアノテーションされている変異(SnpEffのバグで有害度がHIGHとアノテーションされてしまうため)、⑧スプライスジャンクション付近の変異のうち停止コドンよりも後ろのイントロンで起こっている変異、⑨Stop Lostに関してはこのツールでは有害度を算出しない。
