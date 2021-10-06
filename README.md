@@ -26,13 +26,19 @@ In order to identify variants that are predicted to be functionally important fr
 
 # Installation
 
-Download from Zenodo
+Download from Zenodo and unzip 
 
  ```
  wget https://zenodo.org/record/5482094/files/ePat.zip 
+```
+
+ then
+
+ ```
+unzip ePat.zip
  ```
 
-Usage
+# Usage
 
 ①作業ディレクトリ(YOUR_WORKDIR)を作成し、作業ディレクトリ内にInputのVCFファイル(YOUR_InputFile)、リファレンスゲノムのFASTAファイル(YOUR_REF_GENOME)、アノテーションのGTFファイル(YOUR_REF_ANNO)を配置する。(Defaultのリファレンスとして、HG38が与えられています。)
 ②中間ファイルを生成するためのディレクトリ(YOUR_TMPDIR)を用意する。
