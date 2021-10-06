@@ -40,13 +40,15 @@ unzip ePat.zip
 
 # Usage
 
-①作業ディレクトリ(YOUR_WORKDIR)を作成し、作業ディレクトリ内にInputのVCFファイル(YOUR_InputFile)、リファレンスゲノムのFASTAファイル(YOUR_REF_GENOME)、アノテーションのGTFファイル(YOUR_REF_ANNO)を配置する。(Defaultのリファレンスとして、HG38が与えられています。)
-②中間ファイルを生成するためのディレクトリ(YOUR_TMPDIR)を用意する。
-③(YOUR_WORKDIR)に移動
-④以下のコマンドを実行する。
-singularity run  -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (YOUR_WORKDIR) (PATH_TO_ePat.sif)/ePat.sif /root/script/automated_provean.sh -i (YOUR_InputFile) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
-⑤解析は終了したのち、(YOUR_WORKDIR)/output/output_provean_(YOUR_InputFilePrefix).txtがアウトプットファイルとして出力される。
-⑥'PROVEAN_score'列にその変異がタンパク質機能に与える影響が記載され、'PROVEAN_pred'列にその変異が有害か否かが記載される。
+1. Create a working directory (YOUR_WORKDIR) and place a VCF file for Input (YOUR_InputFile), a FASTA file for reference genome (YOUR_REF_GENOME), and a GTF file for annotation (YOUR_REF_ANNO) in YOUR_WORKDIR.  (HG38 is given as the default reference.)
+2. Prepare a directory to generate the intermediate files (YOUR_TMPDIR).
+3. Move to YOUR_WORKDIR.
+``` cd (YOUR_WORKDIR)  ```
+(4) Execute the following command.
+singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (YOUR_WORKDIR) (PATH_TO_ePat.sif)/ePat.sif /root/script/automated_provean.sh -i (YOUR_InputFile) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
+(5) After the analysis is finished, (YOUR_WORKDIR)/output/output_provean_(Prefix of YOUR_InputFile).txt will be output as the output file.
+(6)The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
+Screenshot of the results
 ・結果のスクリーンショット
 
 Detail
