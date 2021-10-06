@@ -14,9 +14,9 @@ In order to identify variants that are predicted to be functionally important fr
 
 # System Requirements
 
-## Kernel version
-- Ubuntu：Ubuntu2004 or above
-- CentOS：CentOS7 or above
+## Supported Distribution
+- Ubuntu：Ubuntu20.04
+- CentOS：CentOS7
 
 ## Memory
 - 10024MB or above
