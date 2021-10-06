@@ -51,8 +51,8 @@ singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (
 
 5. After the analysis is finished, `(YOUR_WORKDIR)/output/output_provean_(Prefix of YOUR_InputFile).txt` will be output as the output file.
 6. The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
-Screenshot of the results
-・結果のスクリーンショット
+
+![ePat結果](https://user-images.githubusercontent.com/85722434/136148112-9e8d24e6-7d15-49a4-83ed-222f3c764d06.png)
 
 Detail
 
