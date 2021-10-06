@@ -43,11 +43,16 @@ unzip ePat.zip
 1. Create a working directory (YOUR_WORKDIR) and place a VCF file for Input (YOUR_InputFile), a FASTA file for reference genome (YOUR_REF_GENOME), and a GTF file for annotation (YOUR_REF_ANNO) in YOUR_WORKDIR.  (HG38 is given as the default reference.)
 2. Prepare a directory to generate the intermediate files (YOUR_TMPDIR).
 3. Move to YOUR_WORKDIR.
+
 ``` cd (YOUR_WORKDIR)  ```
-(4) Execute the following command.
+
+4. Execute the following command.
+```
 singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (YOUR_WORKDIR) (PATH_TO_ePat.sif)/ePat.sif /root/script/automated_provean.sh -i (YOUR_InputFile) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
-(5) After the analysis is finished, (YOUR_WORKDIR)/output/output_provean_(Prefix of YOUR_InputFile).txt will be output as the output file.
-(6)The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
+```
+
+5. After the analysis is finished, (YOUR_WORKDIR)/output/output_provean_(Prefix of YOUR_InputFile).txt will be output as the output file.
+6. The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
 Screenshot of the results
 ・結果のスクリーンショット
 
