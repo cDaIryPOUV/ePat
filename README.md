@@ -28,15 +28,15 @@ In order to identify variants that are predicted to be functionally important fr
 
 Download from Zenodo and unzip 
 
- ```
+```
  wget https://zenodo.org/record/5482094/files/ePat.zip 
 ```
 
  then
 
- ```
+```
 unzip ePat.zip
- ```
+```
 
 # Usage
 
@@ -53,6 +53,20 @@ singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (
 6. The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
 
 ![ePat結果](https://user-images.githubusercontent.com/85722434/136148112-9e8d24e6-7d15-49a4-83ed-222f3c764d06.png)
+
+## Use Test Data
+
+Download from Zenodo and unzip
+
+```
+ wget https://zenodo.org/record/5482094/files/ePat.zip 
+```
+
+```
+unzip ePat.zip
+```
+
+
 
 # Detail
 
