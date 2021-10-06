@@ -85,7 +85,7 @@ Mutations that are annotated as `sequence_feature` (due to a bug in SnpEff that 
 Damage score defined by ePat is calculated in the range from the amino acid where the frameshift starts to the stop codon.
 
 ### 3. Stop Gain
-Calculate the toxicity score defined by ePat in the range from the amino acid to be replaced by the stop codon to the original stop codon.
+Calculate the damage level score defined by ePat in the range from the amino acid to be replaced by the stop codon to the original stop codon.
 
 For `Stop Lost`, the toxicity score is not calculated.
 
