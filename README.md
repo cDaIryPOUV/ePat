@@ -29,7 +29,7 @@ In order to identify variants that are predicted to be functionally important fr
 Download from Zenodo and unzip 
 
 ```
- wget https://zenodo.org/record/5482094/files/ePat.zip 
+wget https://zenodo.org/record/5482094/files/ePat.zip 
 ```
 
  then
@@ -56,17 +56,45 @@ singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (
 
 ## Use Test Data
 
-Download from Zenodo and unzip
+Download from Zenodo and unzip. (Use `ePat/test_data` directry as `YOUR_WORKDIR`)
 
 ```
- wget https://zenodo.org/record/5482094/files/ePat.zip 
+wget https://zenodo.org/record/5482094/files/ePat.zip 
 ```
 
 ```
 unzip ePat.zip
 ```
 
+Make `YOUR_TMPDIR`
 
+```
+mkdir ePat/tmp
+```
+
+Check current directory (Use this output as `PATH_TO_EPAT`)
+
+```
+pwd 
+```
+
+Move `YOUR_WORKDIR`
+
+```
+mv ePat/test_data
+```
+
+Run ePat
+
+```
+singularity run -B PATH_TO_EPAT/ePat/test_data:PATH_TO_EPAT/ePat/test_data -B PATH_TO_EPAT/ePat/tmp:/root/tmp -W PATH_TO_EPAT/ePat/test_data PATH_TO_EPAT/ePat/ePat.sif /root/script/automated_provean.sh -i input.vcf -f tmp.fa -g genes.gtf
+```
+
+Check Result
+
+```
+cat PATH_TO_EPAT/ePat/test_data/input.vcf_dir/output/output_provean_input.txt
+```
 
 # Detail
 
