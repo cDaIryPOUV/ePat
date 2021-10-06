@@ -68,23 +68,25 @@ The damage level score defined by ePat is calculated with the following method.
 For each amino acid, calculate the damage level score when it is replaced by each of the 20 amino acids. The average of these damage level score is used as the damage level score for that frame.
 The minimum damage level score for each frame is the damage level score of this mutation.
 
-①スプライスジャンクション付近の変異
-変異が生じているスプライスジャンクション以降から停止コドンまでの範囲で、ePatで定義した有害度スコアを算出する。
-sequence_featureとしてアノテーションされている変異(SnpEffのバグで有害度がHIGHとアノテーションされてしまうため)と、スプライスジャンクション付近の変異のうち停止コドンよりも後ろのイントロンで起こっている変異は有害度スコアを算出しない。
+## 1. Mutations near splice junctions
+Calculate the damage level score defined by ePat in the range from the splice junction where the mutation occurs to the stop codon.
 
-# 1. Mutations near splice junctions
-フレームシフトが開始しているアミノ酸から停止コドンまでの範囲で、ePatで定義した有害度スコアを算出する。
+Mutations that are annotated as sequence_feature (due to a bug in SnpEff that annotates the damage level as HIGH) and mutations that occur in introns after the stop codon are not given the damage level.
 
-③Stop Gain
-停止コドンに置換されるアミノ酸から元の停止コドンまでの範囲で、ePatで定義した有害度スコアを算出する。
-Stop Lostに関しては、有害度スコアを算出しない。
+## 2. Frameshift
+Damage score defined by ePat is calculated in the range from the amino acid where the frameshift starts to the stop codon.
 
-④Start Lost
-本来の開始コドンから次に現れるメチオニンまでの範囲で、ePatで定義した有害度スコアを算出する。
+## 3. Stop Gain
+Calculate the toxicity score defined by ePat in the range from the amino acid to be replaced by the stop codon to the original stop codon.
 
-⑤Inframe Variant
-PROVEANによって有害度スコアを算出
+For Stop Lost, the toxicity score is not calculated.
 
-これらのスコアを'PROVEAN_score'列に付与し、このスコアが-2.5以下の場合はD(Damaged)、-2.5よりも大きい場合はN(Neutral)を'PROVEAN_pred'列に付与する。
+## 4. Start Lost
+Calculate the damage score defined by ePat in the range from the original start codon to the next methionine.
 
-出力は'output_provean_{元のvcfファイルのprefix}.txt'で出力され、outputディレクトリに保存される。
+## 5. Inframe Variant
+Calculate the damage score by PROVEAN.
+
+Assign these scores to the 'PROVEAN_score' column, and assign D (Damaged) if the score is less than -2.5, or N (Neutral) if the score is greater than -2.5 to the 'PROVEAN_pred' column.
+
+The output is output as 'output_provean_{prefix of the original vcf file}.txt' and saved in the output directory.
