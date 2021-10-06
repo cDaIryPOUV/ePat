@@ -54,16 +54,17 @@ singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (
 
 ![ePat結果](https://user-images.githubusercontent.com/85722434/136148112-9e8d24e6-7d15-49a4-83ed-222f3c764d06.png)
 
-Detail
+# Detail
 
-まずインプットデータとして、バリアントコール後のVCFファイルとリファレンスゲノムのFASTAファイルと遺伝子アノテーションが記載されたGTFファイルを与えます。
+The input data is a VCF file after variant calling, a FASTA file of the reference genome, and a GTF file with gene annotations.
 
-与えられたリファレンスを使って、SnpEffのデータベースを作成し、SnpEffによりアノテーションを付与します。その後にSnpEffのアノテーションを行った結果として、遺伝子の変異の有害度が"HIGH"、もしくは"MODERATE"となっている突然変異のみを抽出します。
+Using the given reference, we create a database for SnpEff and annotate with SnpEff. We then extract mutations that have a "HIGH" or "MODERATE" mutation hazard level as a result of the SnpEff annotation.
 
-抽出された遺伝子候補の各行に関して、INFO列からSnpEffでアノテーションされた突然変異の情報([遺伝子ID, 変異の種類, SnpEffでアノテーションされた有害度, 塩基の変異,アミノ酸変異])を抜き出す。この情報から変異を①スプライスジャンクション付近のバリアント、②フレームシフト、③Stop Gain、④Start Lost、⑤Inframeなバリアント(Point Mutationやフレームシフトを生じないIndel変異)に区別する。
+For each row of the VCF file, extract the information of the mutation annotated with SnpEff ([gene ID, mutation type, SnpEff annotated harmfulness, base mutation, amino acid mutation]) from the INFO column. From this information, the mutations are classified into (1) variants near the splice junction(splice variants), (2) frameshift, (3) Stop Gain, (4) Start Lost, and (5) inframe variants (point Mutation or indel mutations that do not cause frameshift).
 
-①~④に関してはePatで定義した有害度スコアを付与する。⑤に関してはPROVEANによって有害度スコアを付与する。
-ePatで定義した有害度スコアは以下の方法で算出する。
+Variants from (1) to (4) are given a damage level score as defined by ePat, and those (5) will be gived a damage level score by PROVEAN.
+The damage level score defined by ePat is calculated with the following method.
+
 ある範囲のアミノ酸について、各ポジションで２０種類のアミノ酸への置換が起こった場合の有害度をそれぞれproveanを用いて算出し、その平均値を計算する。
 ポジションの平均値について、全ポジションの中で最小値を計算し、これを有害度スコアとする。
 
