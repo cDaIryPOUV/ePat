@@ -42,9 +42,7 @@ unzip ePat.zip
 
 1. Create a working directory `(YOUR_WORKDIR)` and place a VCF file for input `(YOUR_INPUTFILE)`, a FASTA file for reference genome `(YOUR_REF_GENOME)`, and a GTF file for annotation `(YOUR_REF_ANNO)` in `YOUR_WORKDIR`.  (HG38 is given as the default reference.)
 2. Prepare a directory to generate the intermediate files `(YOUR_TMPDIR)`.
-3. Move to YOUR_WORKDIR.
-
-``` cd (YOUR_WORKDIR)  ```
+3. Move to YOUR_WORKDIR.  ``` cd (YOUR_WORKDIR)  ```
 
 4. Execute the following command.
 ```
