@@ -49,7 +49,7 @@ unzip ePat.zip
 singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (YOUR_WORKDIR) (PATH_TO_ePat.sif)/ePat.sif /root/script/automated_provean.sh -i (YOUR_InputFile) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
 ```
 
-5. After the analysis is finished, `(YOUR_WORKDIR)/output/output_provean_(Prefix of YOUR_InputFile).txt` will be output as the output file.
+5. After the analysis is finished, `(YOUR_WORKDIR)/output/output_provean_(Prefix of YOUR_INPUTFILE).txt` will be output as the output file.
 6. The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
 
 ![ePat結果](https://user-images.githubusercontent.com/85722434/136148112-9e8d24e6-7d15-49a4-83ed-222f3c764d06.png)
@@ -62,11 +62,11 @@ The input data is a VCF file after variant calling, a FASTA file of the referenc
 
 ## SnpEff Annotation
 
-Using the given reference, we create a database for SnpEff and annotate with SnpEff. We then extract mutations that have a "HIGH" or "MODERATE" mutation hazard level as a result of the SnpEff annotation.
+Using the given reference, we create a database for SnpEff and annotate with SnpEff. We then extract mutations that have a `HIGH` or `MODERATE` mutation hazard level as a result of the SnpEff annotation.
 
 ## Extract Variant Info
 
-For each row of the VCF file, extract the information of the mutation annotated with SnpEff ([gene ID, mutation type, SnpEff annotated harmfulness, base mutation, amino acid mutation]) from the INFO column. From this information, the mutations are classified into (1) variants near the splice junction(splice variants), (2) frameshift, (3) Stop Gain, (4) Start Lost, and (5) inframe variants (point Mutation or indel mutations that do not cause frameshift).
+For each row of the VCF file, extract the information of the mutation annotated with SnpEff `([gene ID, mutation type, SnpEff annotated harmfulness, base mutation, amino acid mutation])` from the `INFO` column. From this information, the mutations are classified into (1) variants near the splice junction(`splice variants`), (2) `frameshift`, (3) `Stop Gain`, (4) `Start Lost`, and (5) `inframe variants` (point Mutation or indel mutations that do not cause frameshift).
 
 ## Calculate damage level score
 
@@ -79,7 +79,7 @@ The minimum damage level score for each frame is the damage level score of this 
 ### 1. Mutations near splice junctions
 Calculate the damage level score defined by ePat in the range from the splice junction where the mutation occurs to the stop codon.
 
-Mutations that are annotated as sequence_feature (due to a bug in SnpEff that annotates the damage level as HIGH) and mutations that occur in introns after the stop codon are not given the damage level.
+Mutations that are annotated as `sequence_feature` (due to a bug in SnpEff that annotates the damage level as `HIGH`) and mutations that occur in introns after the stop codon are not given the damage level.
 
 ### 2. Frameshift
 Damage score defined by ePat is calculated in the range from the amino acid where the frameshift starts to the stop codon.
@@ -87,7 +87,7 @@ Damage score defined by ePat is calculated in the range from the amino acid wher
 ### 3. Stop Gain
 Calculate the toxicity score defined by ePat in the range from the amino acid to be replaced by the stop codon to the original stop codon.
 
-For Stop Lost, the toxicity score is not calculated.
+For `Stop Lost`, the toxicity score is not calculated.
 
 ### 4. Start Lost
 Calculate the damage score defined by ePat in the range from the original start codon to the next methionine.
@@ -97,6 +97,6 @@ Calculate the damage score by PROVEAN.
 
 ## Output Format
 
-Assign these scores to the 'PROVEAN_score' column, and assign D (Damaged) if the score is less than -2.5, or N (Neutral) if the score is greater than -2.5 to the 'PROVEAN_pred' column.
+Assign these scores to the `PROVEAN_score` column, and assign `D` (Damaged) if the score is less than -2.5, or `N` (Neutral) if the score is greater than -2.5 to the `PROVEAN_pred` column.
 
-The output is output as 'output_provean_{prefix of the original vcf file}.txt' and saved in the output directory.
+The output is output as `output_provean_{Prefix of YOUR_INPUTFILE}.txt` and saved in the output directory.
