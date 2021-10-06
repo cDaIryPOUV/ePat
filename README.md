@@ -65,14 +65,14 @@ For each row of the VCF file, extract the information of the mutation annotated 
 Variants from (1) to (4) are given a damage level score as defined by ePat, and those (5) will be gived a damage level score by PROVEAN.
 The damage level score defined by ePat is calculated with the following method.
 
-ある範囲のアミノ酸について、各ポジションで２０種類のアミノ酸への置換が起こった場合の有害度をそれぞれproveanを用いて算出し、その平均値を計算する。
-ポジションの平均値について、全ポジションの中で最小値を計算し、これを有害度スコアとする。
+For each amino acid, calculate the damage level score when it is replaced by each of the 20 amino acids. The average of these damage level score is used as the damage level score for that frame.
+The minimum damage level score for each frame is the damage level score of this mutation.
 
 ①スプライスジャンクション付近の変異
 変異が生じているスプライスジャンクション以降から停止コドンまでの範囲で、ePatで定義した有害度スコアを算出する。
 sequence_featureとしてアノテーションされている変異(SnpEffのバグで有害度がHIGHとアノテーションされてしまうため)と、スプライスジャンクション付近の変異のうち停止コドンよりも後ろのイントロンで起こっている変異は有害度スコアを算出しない。
 
-②フレームシフト
+# 1. Mutations near splice junctions
 フレームシフトが開始しているアミノ酸から停止コドンまでの範囲で、ePatで定義した有害度スコアを算出する。
 
 ③Stop Gain
