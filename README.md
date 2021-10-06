@@ -1,11 +1,12 @@
 # ePat
 
-ePat(extended PROVEAN annotation tool)は、アミノ酸置換やインデルがタンパク質の生物学的機能に影響を与えるかどうかを予測するソフトウェアツール：PROVEANの機能を拡張したソフトウェアツールです。
+ePat (extended PROVEAN annotation tool) is a software tool that extends the functionality of PROVEAN: a software tool for predicting whether amino acid substitutions and indels will affect the biological function of proteins.
 
-ePatは、従来のPROVEANを拡張し、以下の２つを可能にします。
+ePat extends the conventional PROVEAN to enable the following two things.
 
-①従来のPROVEANでは有害度を算出出来なかったフレームシフトを伴うindel変異とスプライスジャンクション近傍の変異に対しても有害度を算出する。
-②変異リスト(VCFファイル)に含まれる変異についてバッチ処理を行い、一括で有害度を算出する。
+1. To calculate the damage level of indel mutations with frameshift and mutations near splice junctions, for which the conventional PROVEAN could not calculate the damage level of these mutations.
+2. Batch processing is used to calculate the damage level of multiple mutations in a mutation list (VCF file) in a single step.
+
 
 ePatは、変異リストから機能的に重要であると予測されるバリアントを特定するために、これまでは活用出来なかったフレームシフトの情報なども活用して、生物学的機能に影響を及ぼすバリアントをフィルタリングするのに役立ちます。
 
