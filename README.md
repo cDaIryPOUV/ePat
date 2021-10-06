@@ -56,11 +56,19 @@ singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (
 
 # Detail
 
+## Input File
+
 The input data is a VCF file after variant calling, a FASTA file of the reference genome, and a GTF file with gene annotations.
+
+## SnpEff Annotation
 
 Using the given reference, we create a database for SnpEff and annotate with SnpEff. We then extract mutations that have a "HIGH" or "MODERATE" mutation hazard level as a result of the SnpEff annotation.
 
+## Extract Variant Info
+
 For each row of the VCF file, extract the information of the mutation annotated with SnpEff ([gene ID, mutation type, SnpEff annotated harmfulness, base mutation, amino acid mutation]) from the INFO column. From this information, the mutations are classified into (1) variants near the splice junction(splice variants), (2) frameshift, (3) Stop Gain, (4) Start Lost, and (5) inframe variants (point Mutation or indel mutations that do not cause frameshift).
+
+## Calculate damage level score
 
 Variants from (1) to (4) are given a damage level score as defined by ePat, and those (5) will be gived a damage level score by PROVEAN.
 The damage level score defined by ePat is calculated with the following method.
@@ -68,24 +76,26 @@ The damage level score defined by ePat is calculated with the following method.
 For each amino acid, calculate the damage level score when it is replaced by each of the 20 amino acids. The average of these damage level score is used as the damage level score for that frame.
 The minimum damage level score for each frame is the damage level score of this mutation.
 
-## 1. Mutations near splice junctions
+### 1. Mutations near splice junctions
 Calculate the damage level score defined by ePat in the range from the splice junction where the mutation occurs to the stop codon.
 
 Mutations that are annotated as sequence_feature (due to a bug in SnpEff that annotates the damage level as HIGH) and mutations that occur in introns after the stop codon are not given the damage level.
 
-## 2. Frameshift
+### 2. Frameshift
 Damage score defined by ePat is calculated in the range from the amino acid where the frameshift starts to the stop codon.
 
-## 3. Stop Gain
+### 3. Stop Gain
 Calculate the toxicity score defined by ePat in the range from the amino acid to be replaced by the stop codon to the original stop codon.
 
 For Stop Lost, the toxicity score is not calculated.
 
-## 4. Start Lost
+### 4. Start Lost
 Calculate the damage score defined by ePat in the range from the original start codon to the next methionine.
 
-## 5. Inframe Variant
+### 5. Inframe Variant
 Calculate the damage score by PROVEAN.
+
+## Output Format
 
 Assign these scores to the 'PROVEAN_score' column, and assign D (Damaged) if the score is less than -2.5, or N (Neutral) if the score is greater than -2.5 to the 'PROVEAN_pred' column.
 
