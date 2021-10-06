@@ -18,14 +18,19 @@ In order to identify variants that are predicted to be functionally important fr
 - Ubuntu：Ubuntu2004 or above
 - CentOS：CentOS7 or above
 
-Memory
+## Memory
 - 10024MB or above
 
-Singularity version
+## Singularity version
 - Singularity 3.3.0 or above
 
-Installation
-・Zenodoから
+# Installation
+
+Download from Zenodo
+
+ ```
+ wget https://zenodo.org/record/5482094/files/ePat.zip 
+ ```
 
 Usage
 
