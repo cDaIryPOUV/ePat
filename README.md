@@ -12,9 +12,17 @@ In order to identify variants that are predicted to be functionally important fr
 
 ![ePat説明図](https://user-images.githubusercontent.com/85722434/136146389-c82a8176-da15-4873-9ebc-01b2f4d06591.png)
 
-System Requirements
-・カーネルバージョン
-・Singularityバージョン
+# System Requirements
+
+## Kernel version
+- Ubuntu：Ubuntu2004 or above
+- CentOS：CentOS7 or above
+
+Memory
+- 10024MB or above
+
+Singularity version
+- Singularity 3.3.0 or above
 
 Installation
 ・Zenodoから
