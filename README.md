@@ -75,7 +75,7 @@ mkdir ePat/tmp
 Check current directory (Use this output as `PATH_TO_EPAT`)
 
 ```
-pwd 
+export PATH_TO_EPAT=$PWD 
 ```
 
 Move `YOUR_WORKDIR`
@@ -87,13 +87,13 @@ mv ePat/test_data
 Run ePat
 
 ```
-singularity run -B PATH_TO_EPAT/ePat/test_data:PATH_TO_EPAT/ePat/test_data -B PATH_TO_EPAT/ePat/tmp:/root/tmp -W PATH_TO_EPAT/ePat/test_data PATH_TO_EPAT/ePat/ePat.sif /root/script/automated_provean.sh -i input.vcf -f tmp.fa -g genes.gtf
+singularity run -B $PATH_TO_EPAT/ePat/test_data:$PATH_TO_EPAT/ePat/test_data -B $PATH_TO_EPAT/ePat/tmp:/root/tmp -W $PATH_TO_EPAT/ePat/test_data $PATH_TO_EPAT/ePat/ePat.sif /root/script/automated_provean.sh -i input.vcf -f tmp.fa -g genes.gtf
 ```
 
 Check Result
 
 ```
-cat PATH_TO_EPAT/ePat/test_data/input.vcf_dir/output/output_provean_input.txt
+cat $PATH_TO_EPAT/ePat/test_data/input.vcf_dir/output/output_provean_input.txt
 ```
 
 # Detail
