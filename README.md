@@ -96,10 +96,10 @@ Check current directory (Use this output as `PATH_TO_EPAT`)
 export PATH_TO_EPAT=$PWD 
 ```
 
-Move `YOUR_WORKDIR`
+Move to `YOUR_WORKDIR`
 
 ```
-mv ePat/test_data
+cd ePat/test_data
 ```
 
 Run ePat
