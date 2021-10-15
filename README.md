@@ -10,7 +10,7 @@ ePat extends the conventional PROVEAN to enable the following two things.
 
 In order to identify variants that are predicted to be functionally important from the mutation list, ePat can help filter out variants that affect biological functions by utilizing not only point mutation, and indel mutation that does not cause frameshift, but also frameshift, stop gain, and splice variant.
 
-![ePat説明図](https://user-images.githubusercontent.com/85722434/136146389-c82a8176-da15-4873-9ebc-01b2f4d06591.png)
+![スライド3](https://user-images.githubusercontent.com/85722434/137428088-8cf13c2d-6bde-4b63-9888-aa5d48fdd899.JPG)
 
 # System Requirements
 
