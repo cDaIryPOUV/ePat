@@ -115,12 +115,12 @@ cat $PATH_TO_EPAT/ePat/test_data/input.vcf_dir/output/output_provean_input.txt
 ```
 
 ```
-#CHROM  POS       ID           REF  ALT  QUAL  FILTER  INFO                                                                                                                         FORMAT  HG00096
-22      24698294  rs202142165  C    G    100   PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=18536;EAS_AF=0;AMR_AF=0;AFR_AF=0.0008;EUR_AF=0;SAS_AF=0;AA=C|||;VT=SNP;EX_TARGET      GT      0|0
-22      24709317  rs548017612  G    A    100   PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=20098;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0;SAS_AF=0.001;AA=G|||;VT=SNP;EX_TARGET       GT      0|0
-22      24709321  rs569594248  G    C    100   PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=19830;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0.001;SAS_AF=0;AA=G|||;VT=SNP;EX_TARGET       GT      0|0
-22      24709420  rs35783914   C    T    100   PASS    AC=4;AF=0.000798722;AN=5008;NS=2504;DP=19262;EAS_AF=0;AMR_AF=0.0014;AFR_AF=0;EUR_AF=0.003;SAS_AF=0;AA=C|||;VT=SNP;EX_TARGET  GT      0|0
-22      24709423  rs371780453  A    G    100   PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=19367;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0;SAS_AF=0.001;AA=A|||;VT=SNP;EX_TARGET       GT      0|0
+#CHROM  POS       ID           REF  ALT  QUAL   FILTER  INFO                                                                                                                                                                                                                                                                  FORMAT  HG00096  PROVEAN_pred  PROVEAN_score
+22      24698294  rs202142165  C    G    100.0  PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=18536;EAS_AF=0;AMR_AF=0;AFR_AF=0.0008;EUR_AF=0;SAS_AF=0;AA=C|||;VT=SNP;EX_TARGET;ANN=G|missense_variant|MODERATE|SPECC1L|SPECC1L|transcript|NM_015330|protein_coding|3/17|c.95C>G|p.Ser32Cys|389/6763|95/3354|32/1117||        GT      0|0      N             -1.005
+22      24709317  rs548017612  G    A    100.0  PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=20098;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0;SAS_AF=0.001;AA=G|||;VT=SNP;EX_TARGET;ANN=A|missense_variant|MODERATE|SPECC1L|SPECC1L|transcript|NM_015330|protein_coding|4/17|c.190G>A|p.Gly64Arg|484/6763|190/3354|64/1117||       GT      0|0      N             -2.165
+22      24709321  rs569594248  G    C    100.0  PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=19830;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0.001;SAS_AF=0;AA=G|||;VT=SNP;EX_TARGET;ANN=C|missense_variant|MODERATE|SPECC1L|SPECC1L|transcript|NM_015330|protein_coding|4/17|c.194G>C|p.Gly65Ala|488/6763|194/3354|65/1117||       GT      0|0      N             -0.881
+22      24709420  rs35783914   C    T    100.0  PASS    AC=4;AF=0.000798722;AN=5008;NS=2504;DP=19262;EAS_AF=0;AMR_AF=0.0014;AFR_AF=0;EUR_AF=0.003;SAS_AF=0;AA=C|||;VT=SNP;EX_TARGET;ANN=T|missense_variant|MODERATE|SPECC1L|SPECC1L|transcript|NM_015330|protein_coding|4/17|c.293C>T|p.Ser98Phe|587/6763|293/3354|98/1117||  GT      0|0      N             -1.051
+22      24709423  rs371780453  A    G    100.0  PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=19367;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0;SAS_AF=0.001;AA=A|||;VT=SNP;EX_TARGET;ANN=G|missense_variant|MODERATE|SPECC1L|SPECC1L|transcript|NM_015330|protein_coding|4/17|c.296A>G|p.Lys99Arg|590/6763|296/3354|99/1117||       GT      0|0      N             -0.388
 
 ```
 
