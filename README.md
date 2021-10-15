@@ -41,10 +41,20 @@ unzip ePat.zip
 # Usage
 
 1. Create a working directory `(YOUR_WORKDIR)` and place a VCF file for input `(YOUR_INPUTFILE)`, a FASTA file for reference genome `(YOUR_REF_GENOME)`, and a GTF file for annotation `(YOUR_REF_ANNO)` in `YOUR_WORKDIR`.  (HG38 is given as the default reference.)
-2. Prepare a directory to generate the intermediate files `(YOUR_TMPDIR)`.
-3. Move to YOUR_WORKDIR.  ``` cd (YOUR_WORKDIR)  ```
+2. Move to YOUR_WORKDIR.  ``` cd (YOUR_WORKDIR)  ```
+3. Check current directory (Use this output as `WORKDIR`)
+```
+export WORKDIR=$PWD 
+```
+4. Prepare a directory to generate the intermediate files `(YOUR_TMPDIR)`.
+5. Move to YOUR_TMPDIR.  ``` cd (YOUR_TMPDIR)  ```
+6. Check current directory (Use this output as `TMPDIR`)
+```
+export TMPDIR=$PWD 
+```
+7. Move to YOUR_WORKDIR.  ``` cd $WORKDIR  ```
 
-4. Execute the following command.
+6. Execute the following command.
 ```
 singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (YOUR_WORKDIR) (PATH_TO_ePat.sif)/ePat.sif /root/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
 ```
