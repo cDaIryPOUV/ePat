@@ -46,10 +46,10 @@ unzip ePat.zip
 
 4. Execute the following command.
 ```
-singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (YOUR_WORKDIR) (PATH_TO_ePat.sif)/ePat.sif /root/script/automated_provean.sh -i (YOUR_InputFile) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
+singularity run -B (YOUR_WORKDIR):(YOUR_WORKDIR) -B (YOUR_TMPDIR):/root/tmp -W (YOUR_WORKDIR) (PATH_TO_ePat.sif)/ePat.sif /root/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
 ```
 
-5. After the analysis is finished, `(YOUR_WORKDIR)/output/output_provean_(Prefix of YOUR_INPUTFILE).txt` will be output as the output file.
+5. After the analysis is finished, `(YOUR_WORKDIR)/output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` will be output as the output file.
 6. The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
 
 ![ePat結果](https://user-images.githubusercontent.com/85722434/136148112-9e8d24e6-7d15-49a4-83ed-222f3c764d06.png)
@@ -115,8 +115,8 @@ For each row of the VCF file, extract the information of the mutation annotated 
 Variants from (1) to (4) are given a damage level score as defined by ePat, and those (5) will be gived a damage level score by PROVEAN.
 The damage level score defined by ePat is calculated with the following method.
 
-For each amino acid, calculate the damage level score when it is replaced by each of the 20 amino acids. The average of these damage level score is used as the damage level score for that frame.
-The minimum damage level score for each frame is the damage level score of this mutation.
+For each position, calculate the damage level score when it is replaced by each of the 20 amino acids. The average of these damage level score is used as the damage level score for that position.
+The maximum damage level score for each position is the damage level score of this mutation.
 
 ### 1. Mutations near splice junctions
 Calculate the damage level score defined by ePat in the range from the splice junction where the mutation occurs to the stop codon.
@@ -129,7 +129,7 @@ Damage score defined by ePat is calculated in the range from the amino acid wher
 ### 3. Stop Gain
 Calculate the damage level score defined by ePat in the range from the amino acid to be replaced by the stop codon to the original stop codon.
 
-For `Stop Lost`, the toxicity score is not calculated.
+For `Stop Lost`, the damage level score is not calculated.
 
 ### 4. Start Lost
 Calculate the damage score defined by ePat in the range from the original start codon to the next methionine.
@@ -141,4 +141,4 @@ Calculate the damage score by PROVEAN.
 
 Assign these scores to the `PROVEAN_score` column, and assign `D` (Damaged) if the score is less than -2.5, or `N` (Neutral) if the score is greater than -2.5 to the `PROVEAN_pred` column.
 
-The output is output as `output_provean_{Prefix of YOUR_INPUTFILE}.txt` and saved in the output directory.
+The output is output as `output_provean_{PREFIX_OF_YOUR_INPUTFILE}.txt` and saved in the output directory.
