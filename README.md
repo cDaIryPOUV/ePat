@@ -114,6 +114,16 @@ Check Result
 cat $PATH_TO_EPAT/ePat/test_data/input.vcf_dir/output/output_provean_input.txt
 ```
 
+```
+#CHROM  POS       ID           REF  ALT  QUAL  FILTER  INFO                                                                                                                         FORMAT  HG00096
+22      24698294  rs202142165  C    G    100   PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=18536;EAS_AF=0;AMR_AF=0;AFR_AF=0.0008;EUR_AF=0;SAS_AF=0;AA=C|||;VT=SNP;EX_TARGET      GT      0|0
+22      24709317  rs548017612  G    A    100   PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=20098;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0;SAS_AF=0.001;AA=G|||;VT=SNP;EX_TARGET       GT      0|0
+22      24709321  rs569594248  G    C    100   PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=19830;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0.001;SAS_AF=0;AA=G|||;VT=SNP;EX_TARGET       GT      0|0
+22      24709420  rs35783914   C    T    100   PASS    AC=4;AF=0.000798722;AN=5008;NS=2504;DP=19262;EAS_AF=0;AMR_AF=0.0014;AFR_AF=0;EUR_AF=0.003;SAS_AF=0;AA=C|||;VT=SNP;EX_TARGET  GT      0|0
+22      24709423  rs371780453  A    G    100   PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=19367;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0;SAS_AF=0.001;AA=A|||;VT=SNP;EX_TARGET       GT      0|0
+
+```
+
 # Detail
 
 ## Input File
