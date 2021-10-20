@@ -8,7 +8,7 @@ ePat extends the conventional PROVEAN to enable the following two things.
 2. Batch processing is used to calculate the damage level of multiple mutations in a mutation list (VCF file) in a single step.
 
 
-In order to identify variants that are predicted to be functionally important from the mutation list, ePat can help filter out variants that affect biological functions by utilizing not only point mutation, and indel mutation that does not cause frameshift, but also frameshift, stop gain, and splice variant.
+In order to identify variants that are predicted to be functionally important from the mutation list, ePat can help filter out variants that affect biological functions by utilizing not only point mutation, and indel mutation that does not cause frameshift, but also frameshift, stop gain and splice variant.
 
 ![スライド3](https://user-images.githubusercontent.com/85722434/137428088-8cf13c2d-6bde-4b63-9888-aa5d48fdd899.JPG)
 
