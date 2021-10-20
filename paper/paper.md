@@ -6,10 +6,10 @@ tags:
   - SNP Annotation
   - PROVEAN
 authors:
-  - name: Takumi Ito^[co-first author]
+  - name: Takumi Ito
     orcid: 0000-0002-6376-584X
     affiliation: 1, 2
-  - name: Kazutoshi Yoshitake^[co-first author]
+  - name: Kazutoshi Yoshitake
     orcid: 
     affiliation: 1, 2
   - name: Takeshi Iwata
