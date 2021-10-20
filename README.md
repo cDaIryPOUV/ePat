@@ -4,8 +4,8 @@ ePat (extended PROVEAN annotation tool) is a software tool that extends the func
 
 ePat extends the conventional PROVEAN to enable the following two things.
 
-1. To calculate the damage level of indel mutations with frameshift and mutations near splice junctions, for which the conventional PROVEAN could not calculate the damage level of these mutations.
-2. Batch processing is used to calculate the damage level of multiple mutations in a mutation list (VCF file) in a single step.
+1. To calculate the pathogenicity of indel mutations with frameshift and mutations near splice junctions, for which the conventional PROVEAN could not calculate the pathogenicity of these mutations.
+2. Batch processing is used to calculate the pathogenicity of multiple mutations in a mutation list (VCF file) in a single step.
 
 
 In order to identify variants that are predicted to be functionally important from the mutation list, ePat can help filter out variants that affect biological functions by utilizing not only point mutation, and indel mutation that does not cause frameshift, but also frameshift, stop gain and splice variant.
@@ -138,32 +138,32 @@ Using the given reference, we create a database for SnpEff and annotate with Snp
 
 For each row of the VCF file, extract the information of the mutation annotated with SnpEff `([gene ID, mutation type, SnpEff annotated harmfulness, base mutation, amino acid mutation])` from the `INFO` column. From this information, the mutations are classified into (1) variants near the splice junction(`splice variants`), (2) `frameshift`, (3) `Stop Gain`, (4) `Start Lost`, and (5) `inframe variants` (point Mutation or indel mutations that do not cause frameshift).
 
-## Calculate damage level score
+## Calculate pathogenicity
 
-Variants from (1) to (4) are given a damage level score as defined by ePat, and those (5) will be gived a damage level score by PROVEAN.
-The damage level score defined by ePat is calculated with the following method.
+Variants from (1) to (4) are given pathogenicity as defined by ePat, and those (5) will be given pathogenicity by PROVEAN.
+The pathogenicity defined by ePat is calculated with the following method.
 
-For each position, calculate the damage level score when it is replaced by each of the 20 amino acids. The average of these damage level score is used as the damage level score for that position.
-The maximum damage level score for each position is the damage level score of this mutation.
+For each position, calculate the pathogenicity when it is replaced by each of the 20 amino acids. The average of these pathogenicity is used as the pathogenicity for that position.
+The maximum pathogenicity for each position is the pathogenicity of this mutation.
 
 ### 1. Mutations near splice junctions
-Calculate the damage level score defined by ePat in the range from the splice junction where the mutation occurs to the stop codon.
+Calculate the pathogenicity defined by ePat in the range from the splice junction where the mutation occurs to the stop codon.
 
-Mutations that are annotated as `sequence_feature` (due to a bug in SnpEff that annotates the damage level as `HIGH`) and mutations that occur in introns after the stop codon are not given the damage level.
+Mutations that are annotated as `sequence_feature` (due to a bug in SnpEff that annotates the pathogenicity as `HIGH`) and mutations that occur in introns after the stop codon are not given the pathogenicity.
 
 ### 2. Frameshift
-Damage score defined by ePat is calculated in the range from the amino acid where the frameshift starts to the stop codon.
+Pathogenicity defined by ePat is calculated in the range from the amino acid where the frameshift starts to the stop codon.
 
 ### 3. Stop Gain
-Calculate the damage level score defined by ePat in the range from the amino acid to be replaced by the stop codon to the original stop codon.
+Calculate the pathogenicity defined by ePat in the range from the amino acid to be replaced by the stop codon to the original stop codon.
 
-For `Stop Lost`, the damage level score is not calculated.
+For `Stop Lost`, the pathogenicity is not calculated.
 
 ### 4. Start Lost
-Calculate the damage score defined by ePat in the range from the original start codon to the next methionine.
+Calculate the pathogenicity defined by ePat in the range from the original start codon to the next methionine.
 
 ### 5. Inframe Variant
-Calculate the damage score by PROVEAN.
+Calculate the pathogenicity by PROVEAN.
 
 ## Output Format
 
