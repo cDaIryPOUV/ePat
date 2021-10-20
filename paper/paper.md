@@ -1,10 +1,10 @@
 ---
 title: 'extended PROVEAN annotation tool'
 tags:
-  - python
-  - singularity
-  - bioinfomatics
-  - molecular biology
+  - Python
+  - Singularity
+  - SNP Annotation
+  - PROVEAN
 authors:
   - name: Takumi Ito^[co-first author]
     orcid: 0000-0002-6376-584X
@@ -41,7 +41,5 @@ We have developed 'ePat' (extended PROVEAN annotation tool), an extension of PRO
 Using the given reference, we create a database for SnpEff and annotate with SnpEff. We then extract mutations that have a HIGH or MODERATE mutation hazard level as a result of the SnpEff annotation. For each row of the VCF file, extract the information of the mutation annotated with SnpEff. From this information, the mutations are classified into 5 categories. The first is variants near the splice junction(splice variants), the second is frameshift, the third is stop gain, the fourth is start lost, and the last is inframe variants (point Mutation or indel mutations that do not cause frameshift). 
 
 Variants from category 1 to 4 are given a damage level score as defined by ePat, and category 5 will be gived a damage level score by PROVEAN. The damage level score defined by ePat is calculated with the following method. For each amino acid, calculate the damage level score when it is replaced by each of the 20 amino acids. The average of these damage level score is used as the damage level score for that frame. The minimum damage level score for each frame is the damage level score of this mutation.
-
-# Acknowledgments
 
 # Reference
