@@ -4,11 +4,11 @@ ePat (extended PROVEAN annotation tool) is a software tool that extends the func
 
 ePat extends the conventional PROVEAN to enable the following two things.
 
-1. To calculate the pathogenicity of indel mutations with frameshift and mutations near splice junctions, for which the conventional PROVEAN could not calculate the pathogenicity of these mutations.
-2. Batch processing is used to calculate the pathogenicity of multiple mutations in a mutation list (VCF file) in a single step.
+1. To calculate the pathogenicity of indel variants with frameshift and mutations near splice junctions, for which the conventional PROVEAN could not calculate the pathogenicity of these variants.
+2. Batch processing is used to calculate the pathogenicity of multiple variants in a mutation list (VCF file) in a single step.
 
 
-In order to identify variants that are predicted to be functionally important from the mutation list, ePat can help filter out variants that affect biological functions by utilizing not only point mutation, and indel mutation that does not cause frameshift, but also frameshift, stop gain and splice variant.
+In order to identify variants that are predicted to be functionally important from the mutation list, ePat can help filter out variants that affect biological functions by utilizing not only missense variants and indel variants that does not cause frameshift, but also frameshift, stop gain and splice variants.
 
 ![ePat画像](https://user-images.githubusercontent.com/85722434/138379432-078ebc17-247a-41a5-9fa4-77a023e582c0.jpg)
 
