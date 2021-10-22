@@ -4,7 +4,7 @@ ePat (extended PROVEAN annotation tool) is a software tool that extends the func
 
 ePat extends the conventional PROVEAN to enable the following two things.
 
-1. To calculate the pathogenicity of indel variants with frameshift and mutations near splice junctions, for which the conventional PROVEAN could not calculate the pathogenicity of these variants.
+1. To calculate the pathogenicity of indel variants with frameshift and variants near splice junctions, for which the conventional PROVEAN could not calculate the pathogenicity of these variants.
 2. Batch processing is used to calculate the pathogenicity of multiple variants in a mutation list (VCF file) in a single step.
 
 
@@ -129,15 +129,15 @@ cat $PATH_TO_EPAT/ePat/test_data/input.vcf_dir/output/output_provean_input.txt
 
 ## Input File
 
-The input data is a VCF file after variant calling, a FASTA file of the reference genome, and a GTF file with gene annotations.
+The input data is a VCF file after variant call, a FASTA file of the reference genome, and a GTF file with gene annotations.
 
 ## SnpEff Annotation
 
-Using the given reference, we create a database for SnpEff and annotate with SnpEff. We then extract mutations that have a `HIGH` or `MODERATE` mutation hazard level as a result of the SnpEff annotation.
+With given reference, we create a database for SnpEff and annotate the VCF file with SnpEff. We then extract variants that have a `HIGH` or `MODERATE` pathogenicity level as a result of the SnpEff annotation.
 
 ## Extract Variant Info
 
-For each row of the VCF file, extract the information of the mutation annotated with SnpEff `([gene ID, mutation type, SnpEff annotated harmfulness, base mutation, amino acid mutation])` from the `INFO` column. From this information, the mutations are classified into (1) variants near the splice junction(`splice variants`), (2) `frameshift`, (3) `Stop Gain`, (4) `Start Lost`, and (5) `inframe variants` (point Mutation or indel mutations that do not cause frameshift).
+For each row of the VCF file, extract the information of the variants annotated with SnpEff `([gene ID, variant type, pathogenicity level, DNA mutation information, amino acid mutation information])` from the `INFO` column. With this information, the variants are classified into (1) variants near the splice junction(`splice variants`), (2) `frameshift`, (3) `Stop Gain`, (4) `Start Lost`, and (5) `inframe variants` (point Mutation or indel mutations that do not cause frameshift).
 
 ## Calculate pathogenicity
 
@@ -150,7 +150,7 @@ The maximum pathogenicity for each position is the pathogenicity of this mutatio
 ### 1. Mutations near splice junctions
 Calculate the pathogenicity defined by ePat in the range from the splice junction where the mutation occurs to the stop codon.
 
-Mutations that are annotated as `sequence_feature` (due to a bug in SnpEff that annotates the pathogenicity as `HIGH`) and mutations that occur in introns after the stop codon are not given the pathogenicity.
+variants annotated as `sequence_feature` (due to a bug in SnpEff that annotates the pathogenicity as `HIGH`) and variants occuring in introns after the stop codon are not given the pathogenicity.
 
 ### 2. Frameshift
 Pathogenicity defined by ePat is calculated in the range from the amino acid where the frameshift starts to the stop codon.
