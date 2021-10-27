@@ -1,5 +1,5 @@
 ---
-title: 'extended PROVEAN annotation tool'
+title: 'ePat: extended PROVEAN annotation tool '
 tags:
   - Python
   - Singularity
