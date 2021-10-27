@@ -10,7 +10,6 @@ authors:
     orcid: 0000-0002-6376-584X
     affiliation: 1, 2
   - name: Kazutoshi Yoshitake
-    orcid: 
     affiliation: 1, 2
   - name: Takeshi Iwata
     orcid: 0000-0003-1447-0081
