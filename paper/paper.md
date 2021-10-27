@@ -8,9 +8,9 @@ tags:
 authors:
   - name: Takumi Ito
     orcid: 0000-0002-6376-584X
-    affiliation: 1, 2
+    affiliation: "1, 2"
   - name: Kazutoshi Yoshitake
-    affiliation: 1, 2
+    affiliation: "1, 2"
   - name: Takeshi Iwata
     orcid: 0000-0003-1447-0081
     affiliation: 1
@@ -21,7 +21,7 @@ affiliations:
   - name : Laboratory of Aquatic Molecular Biology and Biotechnology, Aquatic Bioscience, Graduate school of Agricultural and Life Sciences, The Univresity of Tokyo
     index: 2
     
-date: 13/10/2021
+date: 1 November 2021
 bibliography: paper.bib
 ---
 
