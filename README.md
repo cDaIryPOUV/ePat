@@ -65,7 +65,7 @@ cd $WORKDIR
 ```
 8. Execute the following command.
 ```
-singularity run -B $WORKDIR:$WORKDIR -B $TMPDIR:/root/tmp -W $WORKDIR (PATH_TO_ePat.sif)/ePat.sif /root/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
+singularity run -B $WORKDIR:$WORKDIR -B $TMPDIR:/root/tmp -W $WORKDIR (PATH_TO_ePat.sif)/ePat.sif /usr/local/ePat/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
 ```
 
 9. After the analysis is finished, `(YOUR_WORKDIR)/output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` will be output as the output file.
@@ -106,7 +106,7 @@ cd ePat/test_data
 Run ePat
 
 ```
-singularity run -B $PATH_TO_EPAT/ePat/test_data:$PATH_TO_EPAT/ePat/test_data -B $PATH_TO_EPAT/ePat/tmp:/root/tmp -W $PATH_TO_EPAT/ePat/test_data $PATH_TO_EPAT/ePat/ePat.sif /root/script/automated_provean.sh -i input.vcf -f tmp.fa -g genes.gtf
+singularity run -B $PATH_TO_EPAT/ePat/test_data:$PATH_TO_EPAT/ePat/test_data -B $PATH_TO_EPAT/ePat/tmp:/root/tmp -W $PATH_TO_EPAT/ePat/test_data $PATH_TO_EPAT/ePat/ePat.sif /usr/local/ePat/script/automated_provean.sh -i input.vcf -f tmp.fa -g genes.gtf
 ```
 
 Check Result
@@ -123,6 +123,22 @@ cat $PATH_TO_EPAT/ePat/test_data/input.vcf_dir/output/output_provean_input.txt
 22      24709420  rs35783914   C    T    100.0  PASS    AC=4;AF=0.000798722;AN=5008;NS=2504;DP=19262;EAS_AF=0;AMR_AF=0.0014;AFR_AF=0;EUR_AF=0.003;SAS_AF=0;AA=C|||;VT=SNP;EX_TARGET;ANN=T|missense_variant|MODERATE|SPECC1L|SPECC1L|transcript|NM_015330|protein_coding|4/17|c.293C>T|p.Ser98Phe|587/6763|293/3354|98/1117||  GT      0|0      N             -1.051
 22      24709423  rs371780453  A    G    100.0  PASS    AC=1;AF=0.000199681;AN=5008;NS=2504;DP=19367;EAS_AF=0;AMR_AF=0;AFR_AF=0;EUR_AF=0;SAS_AF=0.001;AA=A|||;VT=SNP;EX_TARGET;ANN=G|missense_variant|MODERATE|SPECC1L|SPECC1L|transcript|NM_015330|protein_coding|4/17|c.296A>G|p.Lys99Arg|590/6763|296/3354|99/1117||       GT      0|0      N             -0.388
 
+```
+
+## Advanced usage
+
+If you want to share a database built with snpEff or sss files aligned with provean to ```SHARED_DIR```.　The following commands can be run after the above command using the options "-f" and "-g" has been executed.
+
+```
+### Change follows to fit your environment. ###
+i=input.vcf
+SHARED_DIR=$PATH_TO_EPAT/ePat/test_data/input.vcf_dir/snpEff
+WORK_DIR=$PATH_TO_EPAT/ePat/test_data
+TMP_DIR=/tmp/$i
+###############################################
+mkdir -p $TMP_DIR 
+singularity run -B $TMP_DIR:/root/tmp -B $SHARED_DIR:/root/snpEff -B $WORK_DIR:$WORK_DIR -W $WORK_DIR $PATH_TO_EPAT/ePat/ePat.sif /usr/local/ePat/script/automated_provean.sh -i $i -r tmp
+rm -rf $TMP_DIR
 ```
 
 # Detail
