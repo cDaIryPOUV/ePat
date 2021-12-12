@@ -1,3 +1,5 @@
+set -x
+
 input_file_path=$1
 snp_path=$2
 ref=$3

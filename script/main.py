@@ -27,6 +27,8 @@ prefix = root_ext_pair[0]
 etx = root_ext_pair[1]
 print(prefix)
 
+print("END option setting")
+
 #vcfファイルの場合
 import excel_converter
 if "vcf" in etx:
@@ -37,6 +39,8 @@ if "vcf" in etx:
     excel_converter.excel_convert(input_file_path,tmp_path,prefix)
     input_file_path = tmp_path + "/" + prefix + ".xlsx"
 
+print("#END snpEff get seq")
+
 #excel_import
 import excel_process
 excel_process_class = excel_process.ExcelProcess(input_file_path,output_dir,prefix)
@@ -44,6 +48,7 @@ infoList = excel_process_class.colAquire('INFO','col')
 colLen = excel_process_class.colLenAquire()
 proveanPredCol = excel_process_class.proveanPredCol
 
+print("#END get INFO")
 
 #compute
 import compute
@@ -53,9 +58,12 @@ for i in range(0,colLen):
         print('Already exists')
         continue
     else:
+        print("compute.Compute: ",infoList[i],i,script_dir,snp_path,ref,tool_path,prefix,tmp_path)
         compute_class = compute.Compute(infoList[i],i,script_dir,snp_path,ref,tool_path,prefix,tmp_path)
         result = compute_class.run()
         excel_process_class.writeExcel(result, i)
+
+print("#END compute")
 
 import vcf_converter
 if "vcf" in etx: 

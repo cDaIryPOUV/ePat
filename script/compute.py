@@ -45,6 +45,7 @@ class Compute(amino_dic.Aminodic):
                 pass
     #変異の種類で振り分け
     def varCheck(self):
+        print("start varCheck")
         if self.varLists == []:
             print('pseudogene')
             return
@@ -54,6 +55,7 @@ class Compute(amino_dic.Aminodic):
             if varList[4]=='':
                 self.spliceCompute(varList,resA)
             else:
+              try:
                 if 'fs' in varList[4] or '*' in varList[4]:
                     self.fsStopCompute(varList,resA)
                 elif varList[1] == 'start_lost':
@@ -62,6 +64,8 @@ class Compute(amino_dic.Aminodic):
                     self.inframeCompute(varList,resA)
                 else:
                     self.pointMutationCompute(varList,resA)
+              except Exception as e:
+                print(e)
     #snpEffで配列を取得
     def queryAquire(self, ID):
         argsA=['bash', self.script_dir + '/query_Aquire.sh', ID, self.tmp_dir, self.snpPath, self.reference]
@@ -101,28 +105,35 @@ class Compute(amino_dic.Aminodic):
         self.pointMutation_inframeCompute_provean(varList)
     #pointmutationの処理
     def pointMutationCompute(self,varList,resA):
+        print("start pointMutationCompute")
         if resA == '':
             return
         self.pointMutation_inframeCompute_provean(varList)
     #frameshift, stopgain, splicevariantのprovean実行
     def runProvean_fsStopSplice(self,varList):
         try:
+            print("fsStopSplice: ", 'bash', self.script_dir + '/fsStopCompute_provean.sh', varList[0], self.tmp_dir, self.toolPath, self.excelPrefix)
             argsB = ['bash', self.script_dir + '/fsStopCompute_provean.sh', varList[0], self.tmp_dir, self.toolPath, self.excelPrefix]
             resB = subprocess.check_output(argsB)
             resB = resB.decode()
             self.resultCompute_fsStopSplice(resB)
         except:
-            print(self.err_msg_provean)
+            print("fsStopSplice: ", self.err_msg_provean)
             return
     #pointmutation,inframeのindelのprovean実行
     def runProvean(self,varList):
+        print("start runProvean")
         try:
+            print("Provean: ", 'bash', self.script_dir + '/pointmutationCompute_provean.sh', varList[0], self.tmp_dir, self.toolPath, self.excelPrefix)
             argsB = ['bash', self.script_dir + '/pointmutationCompute_provean.sh', varList[0], self.tmp_dir, self.toolPath, self.excelPrefix]
             resB = subprocess.check_output(argsB)
+            print("Provean step 1 fin")
             resB = resB.decode()
+            print("Provean step 1 result: ", resB)
             self.resultCompute(resB)
+            print("Provean step 2 fin")
         except:
-            print(self.err_msg_provean)
+            print("Provean: ", self.err_msg_provean)
             return
     #provean用に変異の情報を処理(splice variant)
     def spliceCompute_provean(self,varList,resA,geneVar):
@@ -166,6 +177,7 @@ class Compute(amino_dic.Aminodic):
         self.runProvean_fsStopSplice(varList)
     #provean用に変異の情報を処理(pointmutation)
     def pointMutation_inframeCompute_provean(self,varList):
+        print("start pointMutation_inframe")
         f = open(self.tmp_dir + self.excelPrefix + '.var', 'w')
         f.write(varList[4] + '\n')
         f.close()
@@ -182,6 +194,8 @@ class Compute(amino_dic.Aminodic):
         self.resultList.append(min(tmpResultList))
     #pointmutation等の結果処理
     def resultCompute(self,resB):
+        print("start resultCompute")
+        print("resB:"+resB+":")
         self.resultList.append(float(resB))
     #結果のチェック
     def resultCheck(self):
@@ -197,8 +211,11 @@ class Compute(amino_dic.Aminodic):
             self.result['resultValue'] = resultValue
             self.result['resultPred'] = resultPred
     def run(self):
+        print("run varListAquire")
         self.varListAquire()
+        print("run varCheck")
         self.varCheck()
+        print("run resultCheck")
         self.resultCheck()
         print(self.result['resultValue'], self.result['resultPred'])
         return self.result

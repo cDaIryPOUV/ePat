@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -x
+
 script_dir=`dirname $0`
 #default reference is hg38
 ref=hg38
