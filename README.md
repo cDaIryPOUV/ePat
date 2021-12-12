@@ -27,13 +27,13 @@ In order to identify variants that are predicted to be functionally important fr
 
 # Installation
 
-Download from Zenodo and unzip 
+Download from Zenodo
 
 ```
 wget https://zenodo.org/record/5482094/files/ePat.zip 
 ```
 
- then
+ then unzip.
 
 ```
 unzip ePat.zip
