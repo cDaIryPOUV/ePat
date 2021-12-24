@@ -30,7 +30,7 @@ In order to identify variants that are predicted to be functionally important fr
 Download from Zenodo
 
 ```
-wget https://zenodo.org/record/5482094/files/ePat.zip 
+wget https://zenodo.org/record/5800418/files/ePat.zip
 ```
 
  then unzip.
