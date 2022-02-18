@@ -140,6 +140,11 @@ singularity run -B $TMP_DIR:/root/tmp -B $SHARED_DIR:/root/snpEff -B $WORK_DIR:$
 rm -rf $TMP_DIR
 ```
 
+リファレンスを自前で用意する場合は https://asia.ensembl.org/index.html などからダウンロードするとよい。
+
+（Ensemblはゲノム解読された真核生物を対象として自動アノテーションを行い、その結果をデータベースとして公開している）
+
+
 # Detail
 
 ## Input File
