@@ -1,11 +1,11 @@
 # ePat
 
-ePat（extended PROVEAN annotation tool）は、アミノ酸置換やインデルがタンパク質の生物学的機能に影響を与えるかどうかを予測するソフトウェアツールであるPROVEANの機能を拡張したソフトウェアツールである。
+ePat（extended PROVEAN annotation tool）は、アミノ酸置換やインデルがタンパク質の生物学的機能に影響を与えるかどうかを予測するソフトウェアツールであるPROVEANの機能を拡張したソフトウェアツールです。
 
-ePatは、従来のPROVEANを拡張し、以下の2点を可能にした。
+ePatは、従来のPROVEANを拡張し、以下の2点を可能にしました。
 
-1. 従来のPROVEANでは有害度を計算できなかったフレームシフトを伴うインデルの変異体やスプライスジャンクション近傍の変異体の有害度を計算できるようになった。
-2. バッチ処理により、変異リスト（VCFファイル）中の複数のバリアントの有害度を一度に計算する。
+1. 従来のPROVEANでは有害度を計算できなかったフレームシフトを伴うインデルの変異体やスプライスジャンクション近傍の変異体の有害度を計算できるようになりました。
+2. バッチ処理により、変異リスト（VCFファイル）中の複数のバリアントの有害度を一度に計算します。
 
 
 3.変異リストから機能的に重要と予測されるバリアントを同定するために、ePatはフレームシフトを起こさないミスセンスバリアントやインデルバリアントだけでなく、フレームシフト、ストップゲイン、スプライスのバリアントも活用し、生体機能に影響を与えるバリアントをフィルタリングすることが可能です。
@@ -41,35 +41,35 @@ unzip ePat.zip
 
 # Usage
 
-1. 作業ディレクトリ `(YOUR_WORKDIR)` を作成し、入力用の VCF ファイル `(YOUR_INPUTFILE)` 、参照ゲノム用の FASTA ファイル `(YOUR_REF_GENOME)` 、アノテーション用の GTF ファイル `(YOUR_REF_ANNO)` を `YOUR_WORKDIR` 配下に配置します。 (デフォルトのリファレンスとして HG38 が指定されています)。
+1. 作業ディレクトリ `(YOUR_WORKDIR)` を作成し、入力用の VCF ファイル `(YOUR_INPUTFILE)` 、参照ゲノム用の FASTA ファイル `(YOUR_REF_GENOME)` 、アノテーション用の GTF ファイル `(YOUR_REF_ANNO)` を `YOUR_WORKDIR` 配下に配置する。 (デフォルトのリファレンスとして HG38 が指定されている)。
 2. `YOUR_WORKDIR`に移動する. 
 ``` 
 cd (YOUR_WORKDIR)  
 ```
-3. Check current directory (Use this output as `WORKDIR`)
+3. カレントディレクトリの確認 (この出力を `WORKDIR` として使用する)
 ```
 export WORKDIR=$PWD 
 ```
-4. Prepare a directory to generate the intermediate files `(YOUR_TMPDIR)`.
-5. Move to YOUR_TMPDIR.  
+4. 中間ファイルを生成するためのディレクトリ `(YOUR_TMPDIR)` を用意する。
+5. YOUR_TMPDIRに移動する。 
 ``` 
 cd (YOUR_TMPDIR)  
 ```
-6. Check current directory (Use this output as `TMPDIR`)
+6. カレントディレクトリのチェック (この出力を `TMPDIR` として使用する)
 ```
 export TMPDIR=$PWD 
 ```
-7. Move to YOUR_WORKDIR.  
+7. YOUR_WORKDIRに移動する。
 ``` 
 cd $WORKDIR  
 ```
-8. Execute the following command.
+8. 以下のコマンドを実行する
 ```
 singularity run -B $WORKDIR:$WORKDIR -B $TMPDIR:/root/tmp -W $WORKDIR (PATH_TO_ePat.sif)/ePat.sif /usr/local/ePat/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
 ```
 
-9. After the analysis is finished, `(YOUR_WORKDIR)/output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` will be output as the output file.
-10. The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
+9. 解析終了後、出力ファイルとして `(YOUR_WORKDIR)/output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` が出力される。
+10. 「PROVEAN_score」列は変異がタンパク質の機能に与える影響を示し、「PROVEAN_pred」列は変異が有害であるか否かを示す。
 
 ![ePat結果](https://user-images.githubusercontent.com/85722434/136148112-9e8d24e6-7d15-49a4-83ed-222f3c764d06.png)
 
