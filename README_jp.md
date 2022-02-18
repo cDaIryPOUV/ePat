@@ -27,13 +27,13 @@ ePatは、従来のPROVEANを拡張し、以下の2点を可能にしました�
 
 # Installation
 
-ZenodoからSingularityイメージとテストデータのダウンロードを行う。
+ZenodoからSingularityイメージとテストデータのダウンロードを行います。
 
 ```
 wget https://zenodo.org/record/5800418/files/ePat.zip
 ```
 
-ダウンロードが完了したら、zipファイルの解凍を行う。
+ダウンロードが完了したら、zipファイルの解凍を行います。
 
 ```
 unzip ePat.zip
@@ -41,42 +41,41 @@ unzip ePat.zip
 
 # Usage
 
-1. 作業ディレクトリ `(YOUR_WORKDIR)` を作成し、入力用の VCF ファイル `(YOUR_INPUTFILE)` 、参照ゲノム用の FASTA ファイル `(YOUR_REF_GENOME)` 、アノテーション用の GTF ファイル `(YOUR_REF_ANNO)` を `YOUR_WORKDIR` 配下に配置する。 (デフォルトのリファレンスとして HG38 が指定されている)。
-2. `YOUR_WORKDIR`に移動する. 
+1. 作業ディレクトリ `(YOUR_WORKDIR)` を作成し、入力用の VCF ファイル `(YOUR_INPUTFILE)` 、参照ゲノム用の FASTA ファイル `(YOUR_REF_GENOME)` 、アノテーション用の GTF ファイル `(YOUR_REF_ANNO)` を `YOUR_WORKDIR` 配下に配置します。 (デフォルトのリファレンスとして HG38 が指定されています)。
+2. `YOUR_WORKDIR`に移動します. 
 ``` 
 cd (YOUR_WORKDIR)  
 ```
-3. カレントディレクトリの確認 (この出力を `WORKDIR` として使用する)
+3. カレントディレクトリの確認 (この出力を `WORKDIR` として使用します)
 ```
 export WORKDIR=$PWD 
 ```
-4. 中間ファイルを生成するためのディレクトリ `(YOUR_TMPDIR)` を用意する。
-5. YOUR_TMPDIRに移動する。 
+4. 中間ファイルを生成するためのディレクトリ `(YOUR_TMPDIR)` を用意します。
+5. YOUR_TMPDIRに移動します。 
 ``` 
 cd (YOUR_TMPDIR)  
 ```
-6. カレントディレクトリのチェック (この出力を `TMPDIR` として使用する)
+6. カレントディレクトリのチェック (この出力を `TMPDIR` として使用します)
 ```
 export TMPDIR=$PWD 
 ```
-7. YOUR_WORKDIRに移動する。
+7. YOUR_WORKDIRに移動します。
 ``` 
 cd $WORKDIR  
 ```
-8. 以下のコマンドを実行する
+8. 以下のコマンドを実行してください
 ```
 singularity run -B $WORKDIR:$WORKDIR -B $TMPDIR:/root/tmp -W $WORKDIR (PATH_TO_ePat.sif)/ePat.sif /usr/local/ePat/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
 ```
 
-9. 解析終了後、出力ファイルとして `(YOUR_WORKDIR)/output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` が出力される。
-10. 「PROVEAN_score」列は変異がタンパク質の機能に与える影響を示し、「PROVEAN_pred」列は変異が有害であるか否かを示す。
+9. 解析終了後、出力ファイルとして `(YOUR_WORKDIR)/output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` が出力されます。
+10. 「PROVEAN_score」列は変異がタンパク質の機能に与える影響を示し、「PROVEAN_pred」列は変異が有害であるか否かを示します。
 
 ![ePat結果](https://user-images.githubusercontent.com/85722434/136148112-9e8d24e6-7d15-49a4-83ed-222f3c764d06.png)
 
 ## Use Test Data
 
-Download from Zenodo and unzip. (Use `ePat/test_data` directry as `YOUR_WORKDIR`)
-
+Zenodoからダウンロードし、解凍してください。(ePat/test_data` ディレクトリを `YOUR_WORKDIR` として使用します。）
 ```
 wget https://zenodo.org/record/5482094/files/ePat.zip 
 ```
@@ -85,31 +84,31 @@ wget https://zenodo.org/record/5482094/files/ePat.zip
 unzip ePat.zip
 ```
 
-Make `YOUR_TMPDIR`
+YOUR_TMPDIR`を作成します。
 
 ```
 mkdir ePat/tmp
 ```
 
-Check current directory (Use this output as `PATH_TO_EPAT`)
+カレントディレクトリのチェック (この出力を `PATH_TO_EPAT` として使用します)
 
 ```
 export PATH_TO_EPAT=$PWD 
 ```
 
-Move to `YOUR_WORKDIR`
+YOUR_WORKDIR`に移動します。
 
 ```
 cd ePat/test_data
 ```
 
-Run ePat
+ePatを実行します
 
 ```
 singularity run -B $PATH_TO_EPAT/ePat/test_data:$PATH_TO_EPAT/ePat/test_data -B $PATH_TO_EPAT/ePat/tmp:/root/tmp -W $PATH_TO_EPAT/ePat/test_data $PATH_TO_EPAT/ePat/ePat.sif /usr/local/ePat/script/automated_provean.sh -i input.vcf -f tmp.fa -g genes.gtf
 ```
 
-Check Result
+結果を確認します。
 
 ```
 cat $PATH_TO_EPAT/ePat/test_data/input.vcf_dir/output/output_provean_input.txt
@@ -127,7 +126,7 @@ cat $PATH_TO_EPAT/ePat/test_data/input.vcf_dir/output/output_provean_input.txt
 
 ## Advanced usage
 
-If you want to share a database built with snpEff or sss files aligned with provean to ```SHARED_DIR```.　The following commands can be run after the above command using the options "-f" and "-g" has been executed.
+snpEff で構築したデータベース、または provean で整列した sss ファイルを ``SHARED_DIR`` で共有したい場合は、上記のコマンドでオプション "-f" と "-g" を指定して、以下のコマンドを実行してください。
 
 ```
 ### Change follows to fit your environment. ###
@@ -145,46 +144,46 @@ rm -rf $TMP_DIR
 
 ## Input File
 
-The input data is a VCF file after variant call, a FASTA file of the reference genome, and a GTF file with gene annotations.
+入力データは、バリアントコール後の VCF ファイル、参照ゲノムの FASTA ファイル、および遺伝子アノテーションの GTF ファイルです。
 
 ## SnpEff Annotation
 
-With given reference, we create a database for SnpEff and annotate the VCF file with SnpEff. We then extract variants that have a `HIGH` or `MODERATE` pathogenicity level as a result of the SnpEff annotation.
+与えられたリファレンスをもとに、SnpEffのデータベースを作成し、VCFファイルにSnpEffのアノテーションを付与します。SnpEffのアノテーションの結果、病原性が`HIGH`または`MODERATE`であるバリアントを抽出します。
 
 ## Extract Variant Info
 
-For each row of the VCF file, extract the information of the variants annotated with SnpEff `([gene ID, variant type, pathogenicity level, DNA mutation information, amino acid mutation information])` from the `INFO` column. With this information, the variants are classified into (1) variants near the splice junction(`splice variants`), (2) `frameshift`, (3) `Stop Gain`, (4) `Start Lost`, and (5) `inframe variants` (point Mutation or indel mutations that do not cause frameshift).
+VCFファイルの各行について、SnpEffでアノテーションしたvariantの情報`([遺伝子ID, variant type, pathogenicity level, DNA mutation information, amino acid mutation information])` を `INFO` カラムから抽出します。この情報をもとに、(1) スプライスジャンクション近傍の変異(`splice variants`), (2) `frameshift`, (3) `Stop Gain`, (4) `Start Lost`, (5) `inframe variants` (point Mutation or indel mutations that not cause frameshift) に分類されます。
 
 ## Calculate pathogenicity
 
-Variants from (1) to (4) are given pathogenicity as defined by ePat, and those (5) will be given pathogenicity by PROVEAN.
-The pathogenicity defined by ePat is calculated with the following method.
+（1）～（4）の変異体にはePatが定義する有害度が付与され、（5）の変異体にはPROVEANが定義する有害度が付与されることになります。
+ePatで定義された有害度は、以下の方法で算出されます。
 
-For each position, calculate the pathogenicity when it is replaced by each of the 20 amino acids. The average of these pathogenicity is used as the pathogenicity for that position.
-The maximum pathogenicity for each position is the pathogenicity of this mutation.
+各ポジションのアミノ酸について、20種類のアミノ酸のそれぞれで置換した場合の有害度を計算する。これらの有害度の平均をそのポジションの有害度とします。
+各ポジションの有害度の最大値を、この変異の有害度とします。
 
 ### 1. Mutations near splice junctions
-Calculate the pathogenicity defined by ePat in the range from the splice junction where the mutation occurs to the stop codon.
+変異が生じたスプライスジャンクションからストップコドンまでの範囲で、ePatで定義された有害度を計算します。
 
-variants annotated as `sequence_feature` (due to a bug in SnpEff that annotates the pathogenicity as `HIGH`) and variants occuring in introns after the stop codon are not given the pathogenicity.
+`sequence_feature` としてアノテーションされた変異体（SnpEff のバグで `HIGH` とアノテーションされているため）と、ストップコドン以降のイントロンに発生する変異体は有害度が与えられません。
 
 ### 2. Frameshift
-Pathogenicity defined by ePat is calculated in the range from the amino acid where the frameshift starts to the stop codon.
+ePatで定義される有害度は、フレームシフトが始まるアミノ酸からストップコドンまでの範囲で計算されます。
 
 ### 3. Stop Gain
-Calculate the pathogenicity defined by ePat in the range from the amino acid to be replaced by the stop codon to the original stop codon.
+停止コドンで置換されるアミノ酸から元の停止コドンまでの範囲で、ePatで定義される有害度を計算します。
 
-For `Stop Lost`, the pathogenicity is not calculated.
+`Stop Lost`の場合、有害度は計算されません。
 
 ### 4. Start Lost
-Calculate the pathogenicity defined by ePat in the range from the original start codon to the next methionine.
+元の開始コドンから次のメチオニンまでの範囲でePatで定義された有害度を計算します。
 
 ### 5. Inframe Variant
-Calculate the pathogenicity by PROVEAN.
+PROVEANで有害度を算出します。
 
 ## Output Format
 
-Assign these scores to the `PROVEAN_score` column, and assign `D` (Damaged) if the score is less than -2.5, or `N` (Neutral) if the score is greater than -2.5 to the `PROVEAN_pred` column.
+これらのスコアを `PROVEAN_score` 列に代入し、スコアが -2.5 より小さい場合は `D` (Damaged) を、スコアが -2.5 より大きい場合は `N` (Neutral) を `PROVEAN_pred` 列に記載します。
 
-The output is output as `output_provean_{PREFIX_OF_YOUR_INPUTFILE}.txt` and saved in the output directory.
+出力は `output_provean_{PREFIX_OF_YOUR_INPUTFILE}.txt` として出力され、出力ディレクトリに格納されます。
 
