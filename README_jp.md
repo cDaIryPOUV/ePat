@@ -41,7 +41,7 @@ unzip ePat.zip
 
 # Usage
 
-1. 作業ディレクトリ `(YOUR_WORKDIR)` を作成し、入力用の VCF ファイル `(YOUR_INPUTFILE)` 、参照ゲノム用の FASTA ファイル `(YOUR_REF_GENOME)` 、アノテーション用の GTF ファイル `(YOUR_REF_ANNO)` を `YOUR_WORKDIR` 配下に配置します。 (デフォルトのリファレンスとして HG38 が指定されています)。リファレンスを自前で用意する場合は https://asia.ensembl.org/index.html などからダウンロードできます。（Ensemblはゲノム解読された真核生物を対象として自動アノテーションを行い、その結果をデータベースとして公開しています）
+1. 作業ディレクトリ `(YOUR_WORKDIR)` を作成し、入力用の VCF ファイル `(YOUR_INPUTFILE)` 、参照ゲノム用の FASTA ファイル `(YOUR_REF_GENOME)` 、アノテーション用の GTF ファイル `(YOUR_REF_ANNO)` を `YOUR_WORKDIR` 配下に配置します。 (デフォルトのリファレンスとして HG38 が指定されています)。リファレンスを自前で用意する場合は https://asia.ensembl.org/index.html などからダウンロードできます。（Ensemblはゲノム解読された真核生物を対象として自動アノテーションを行い、その結果をデータベースとして公開しています）またバンドウイルカ(Tursiop truncatus)のリファレンスではリファレンスの改変などは特に不要であったが、リファレンスによってはSnpEffとの互換性を保つためにGTFファイル修正を直接行う必要がある。
 2. `YOUR_WORKDIR`に移動します. 
 ``` 
 cd (YOUR_WORKDIR)  
