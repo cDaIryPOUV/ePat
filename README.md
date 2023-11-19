@@ -109,6 +109,12 @@ Run ePat
 singularity run -B $PATH_TO_EPAT/ePat/test_data:$PATH_TO_EPAT/ePat/test_data -B $PATH_TO_EPAT/ePat/tmp:/root/tmp -W $PATH_TO_EPAT/ePat/test_data $PATH_TO_EPAT/ePat/ePat.sif /usr/local/ePat/script/automated_provean.sh -i input.vcf -f tmp.fa -g genes.gtf
 ```
 
+If you want to use docker,
+
+```
+docker run -i --rm -v $WORKDIR:$WORKDIR -v $TMPDIR:/root/tmp -w $WORKDIR c2997108/epat:2 /usr/local/ePat/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
+```
+
 Check Result
 
 ```
