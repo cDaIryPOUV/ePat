@@ -68,6 +68,11 @@ cd $WORKDIR
 singularity run -B $WORKDIR:$WORKDIR -B $TMPDIR:/root/tmp -W $WORKDIR (PATH_TO_ePat.sif)/ePat.sif /usr/local/ePat/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
 ```
 
+dockerを使うなら下記のコマンド
+```
+docker run -i --rm -v $WORKDIR:$WORKDIR -v $TMPDIR:/root/tmp -w $WORKDIR c2997108/epat:2 /usr/local/ePat/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
+```
+
 9. 解析終了後、出力ファイルとして `(YOUR_WORKDIR)/output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` が出力されます。
 10. 「PROVEAN_score」列は変異がタンパク質の機能に与える影響を示し、「PROVEAN_pred」列は変異が有害であるか否かを示します。
 
