@@ -59,7 +59,7 @@ mkdir tmp
 docker run -i --rm -v $PWD:$PWD -v $PWD/tmp:/root/tmp -w $PWD c2997108/epat:2 /usr/local/ePat/script/automated_provean.sh -i input.vcf -f Sars_cov_2.ASM985889v3.dna.toplevel.fa -g Sars_cov_2.ASM985889v3.101.gtf
 ```
 
-4. After the analysis is finished, `output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` will be output as the output file.
+4. After the analysis is finished, `(YOUR_INPUTFILE)_dir/output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` will be output as the output file. (Example: http://suikou.fs.a.u-tokyo.ac.jp/data/ePat/test_data2/output_provean_input.txt )
 5. The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
 
 ![ePat結果](https://user-images.githubusercontent.com/85722434/136148112-9e8d24e6-7d15-49a4-83ed-222f3c764d06.png)
