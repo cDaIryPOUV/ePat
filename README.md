@@ -41,35 +41,26 @@ unzip ePat.zip
 
 # Usage
 
-1. Create a working directory `(YOUR_WORKDIR)` and place a VCF file for input `(YOUR_INPUTFILE)`, a FASTA file for reference genome `(YOUR_REF_GENOME)`, and a GTF file for annotation `(YOUR_REF_ANNO)` in `YOUR_WORKDIR`.  (HG38 is given as the default reference.)
-2. Move to YOUR_WORKDIR. 
-``` 
-cd (YOUR_WORKDIR)  
+1. Create a working directory `(YOUR_WORKDIR)` and place a VCF file for input `(YOUR_INPUTFILE)`, a FASTA file for reference genome `(YOUR_REF_GENOME)`, and a GTF file for annotation `(YOUR_REF_ANNO)` in `YOUR_WORKDIR`.  (HG38 is given as the default reference.) For example, if you want to annotate SARS-CoV-2 mutations, download a FASTA file and a GTF file from https://covid-19.ensembl.org/Sars_cov_2/Info/Index, then ungzip them.
 ```
-3. Check current directory (Use this output as `WORKDIR`)
-```
-export WORKDIR=$PWD 
-```
-4. Prepare a directory to generate the intermediate files `(YOUR_TMPDIR)`.
-5. Move to YOUR_TMPDIR.  
-``` 
-cd (YOUR_TMPDIR)  
-```
-6. Check current directory (Use this output as `TMPDIR`)
-```
-export TMPDIR=$PWD 
-```
-7. Move to YOUR_WORKDIR.  
-``` 
-cd $WORKDIR  
-```
-8. Execute the following command.
-```
-singularity run -B $WORKDIR:$WORKDIR -B $TMPDIR:/root/tmp -W $WORKDIR (PATH_TO_ePat.sif)/ePat.sif /usr/local/ePat/script/automated_provean.sh -i (YOUR_INPUTFILE) -f (YOUR_REF_GENOME) -g (YOUR_REF_ANNO)
+# These are demo data
+wget http://suikou.fs.a.u-tokyo.ac.jp/data/ePat/test_data2/input.vcf
+wget http://suikou.fs.a.u-tokyo.ac.jp/data/ePat/test_data2/Sars_cov_2.ASM985889v3.dna.toplevel.fa
+wget http://suikou.fs.a.u-tokyo.ac.jp/data/ePat/test_data2/Sars_cov_2.ASM985889v3.101.gtf
 ```
 
-9. After the analysis is finished, `(YOUR_WORKDIR)/output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` will be output as the output file.
-10. The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
+2. Make a temp directory to generate the intermediate fiels in YOUR_WORKDIR. 
+```
+mkdir tmp
+```
+
+3. Execute the following command. (If you are searching for a gene for the first time, it will take a very long time to perform a BLAST search in the NCBI NR database.)
+```
+docker run -i --rm -v $PWD:$PWD -v $PWD/tmp:/root/tmp -w $PWD c2997108/epat:2 /usr/local/ePat/script/automated_provean.sh -i input.vcf -f Sars_cov_2.ASM985889v3.dna.toplevel.fa -g Sars_cov_2.ASM985889v3.101.gtf
+```
+
+4. After the analysis is finished, `output/output_provean_(PREFIX_OF_YOUR_INPUTFILE).txt` will be output as the output file.
+5. The 'PROVEAN_score' column shows the effect of the mutation on the protein function, and the 'PROVEAN_pred' column shows whether the mutation is harmful or not.
 
 ![ePat結果](https://user-images.githubusercontent.com/85722434/136148112-9e8d24e6-7d15-49a4-83ed-222f3c764d06.png)
 
